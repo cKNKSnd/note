@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spring Boot 整合 MyBatis | 第八十三</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/note/logo.png">
+    <meta name="description" content="Kendall Cai&#39;s Personal Blog">
+    
+    <link rel="preload" href="/note/assets/css/0.styles.5690957e.css" as="style"><link rel="preload" href="/note/assets/js/app.0ba106d2.js" as="script"><link rel="preload" href="/note/assets/js/2.218d80b2.js" as="script"><link rel="preload" href="/note/assets/js/22.0a6abdc2.js" as="script"><link rel="prefetch" href="/note/assets/js/10.c6c9d4a6.js"><link rel="prefetch" href="/note/assets/js/11.38f1e04c.js"><link rel="prefetch" href="/note/assets/js/12.ccb61adf.js"><link rel="prefetch" href="/note/assets/js/13.9e3449f7.js"><link rel="prefetch" href="/note/assets/js/14.75f0274d.js"><link rel="prefetch" href="/note/assets/js/15.ae274622.js"><link rel="prefetch" href="/note/assets/js/16.448b8747.js"><link rel="prefetch" href="/note/assets/js/17.add8c01d.js"><link rel="prefetch" href="/note/assets/js/18.35631ebb.js"><link rel="prefetch" href="/note/assets/js/19.eb0b00d8.js"><link rel="prefetch" href="/note/assets/js/20.15ba7766.js"><link rel="prefetch" href="/note/assets/js/21.deb2889b.js"><link rel="prefetch" href="/note/assets/js/23.e3ea2e3e.js"><link rel="prefetch" href="/note/assets/js/24.fc7e295f.js"><link rel="prefetch" href="/note/assets/js/25.36cbfaa6.js"><link rel="prefetch" href="/note/assets/js/26.3ae57789.js"><link rel="prefetch" href="/note/assets/js/27.eedbb7c2.js"><link rel="prefetch" href="/note/assets/js/3.1ada5a26.js"><link rel="prefetch" href="/note/assets/js/4.c587eda4.js"><link rel="prefetch" href="/note/assets/js/5.429d47c5.js"><link rel="prefetch" href="/note/assets/js/6.7c9d4c6a.js"><link rel="prefetch" href="/note/assets/js/7.f239ecc2.js"><link rel="prefetch" href="/note/assets/js/8.afc8ecb5.js"><link rel="prefetch" href="/note/assets/js/9.2bfdb7ea.js">
+    <link rel="stylesheet" href="/note/assets/css/0.styles.5690957e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/note/" class="home-link router-link-active"><!----> <span class="site-name">第八十三</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/note/view/指南/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程" class="dropdown-title"><span class="title">编程</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程" class="mobile-dropdown-title"><span class="title">编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/note/view/后端/" class="nav-link">
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/note/view/前端/" class="nav-link">
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/note/view/其他/" class="nav-link">
+  其他
+</a></li></ul></div></div><div class="nav-item"><a href="/note/view/日记/" class="nav-link">
+  日记
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  BaiDu
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Google
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/note/view/指南/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程" class="dropdown-title"><span class="title">编程</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程" class="mobile-dropdown-title"><span class="title">编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/note/view/后端/" class="nav-link">
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/note/view/前端/" class="nav-link">
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/note/view/其他/" class="nav-link">
+  其他
+</a></li></ul></div></div><div class="nav-item"><a href="/note/view/日记/" class="nav-link">
+  日记
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  BaiDu
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Google
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Linux</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Nginx</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Springboot</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/note/view/后端/Springboot/NoClassDefFoundError和ClassNotFoundException区别.html" class="sidebar-link">NoClassDefFoundError和ClassNotFoundException区别</a></li><li><a href="/note/view/后端/Springboot/Springboot整合MyBatis.html" class="active sidebar-link">Springboot整合MyBatis</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/note/view/后端/Springboot/Springboot整合MyBatis.html#service-层" class="sidebar-link">Service 层</a></li></ul></li><li><a href="/note/view/后端/Springboot/问题记录.html" class="sidebar-link">问题记录</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="spring-boot-整合-mybatis"><a href="#spring-boot-整合-mybatis" class="header-anchor">#</a> Spring Boot 整合 MyBatis</h1> <h2 id="service-层"><a href="#service-层" class="header-anchor">#</a> Service 层</h2> <p>最佳实践，定义通用DAO接口，利用泛型实现Service的通用方法的实现，避免了重复编写同样的逻辑代码。</p> <p>但是在很多复杂工程中，最好是定义多种DTO（Data Transfer Object）用于后端和前端的数据映射，里面包含的数据可以是多个DAO字段的集合，也可以是从多个DAO中提取出的几个字段。然后针对DTO进行Service的编写。</p> <p><strong>概念</strong></p> <ul><li>DAO - Data Access Object 用于后端和数据库的数据映射和传输。</li> <li>DTO - Data Transfer Object 用于后端和前端的数据映射和传输，一般是多个DAO字段的合集或者经过处理过的字段。按需定义字段，尽量少，减少不必要的字段。</li></ul> <p><strong>创建的文件：</strong></p> <ul><li><p><code>entity/SysLog.java</code> 举例用的实体</p></li> <li><p><code>dao/SysLogDao.java</code> 举例用的MyBatis动态代理mapper，implements了自定义的<code>Mapper&lt;Model, Ky&gt;</code>接口</p></li> <li><p><code>util/Mapper.java</code> 定义所有DAO共同使用的Mapper接口</p></li> <li><p><code>service/IService.java</code> 定义通用接口，其他的所有基础服务类接口都extends这个接口</p></li> <li><p><code>service/impl/BaseService.java</code> 定义通用接口抽象实现，其他的所有基础服务实现类都extends这个接口，再implements基础服务接口</p></li> <li><p><code>service/SysLogService.java</code> 举例用的基础服务接口</p></li> <li><p><code>service/SysLogServiceImpl.java</code> 举例用的基础服务实现类</p></li></ul> <h4 id="syslog-java"><a href="#syslog-java" class="header-anchor">#</a> SysLog.java</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysLog</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> ip<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Date</span> createBy<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> remark<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> operateUrl<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> operateBy<span class="token punctuation">;</span>
+    
+    <span class="token comment">// getter and setter</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h4 id="syslogdao-java"><a href="#syslogdao-java" class="header-anchor">#</a> SysLogDao.java</h4> <ul><li><code>implements Mapper&lt;Model, Ky&gt;</code> 接口，就不需要再定义通用的数据库访问操作方法</li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SysLogDao</span> <span class="token keyword">extends</span> <span class="token class-name">Mapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SysLog</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="mapper-java"><a href="#mapper-java" class="header-anchor">#</a> Mapper.java</h4> <ul><li>自定义的DAO(即MyBatis里的mapper动态代理对象)访问通用接口</li> <li>定义DAO通用的基础方法</li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 自定义的DAO(即MyBatis里的mapper动态代理对象)访问通用接口
+ *
+ * @param &lt;Model&gt; 不是Model类，是泛型，指代实体模型(Entity)
+ * @param &lt;Ky&gt; 主键
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Mapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Model</span><span class="token punctuation">,</span> <span class="token class-name">Ky</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> <span class="token function">deleteByPrimaryKey</span><span class="token punctuation">(</span><span class="token class-name">Ky</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token class-name">Model</span> record<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">insertSelective</span><span class="token punctuation">(</span><span class="token class-name">Model</span> record<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Model</span> <span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span><span class="token class-name">Ky</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">updateByPrimaryKeySelective</span><span class="token punctuation">(</span><span class="token class-name">Model</span> record<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">updateByPrimaryKey</span><span class="token punctuation">(</span><span class="token class-name">Model</span> record<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h4 id="iservice-java"><a href="#iservice-java" class="header-anchor">#</a> IService.java</h4> <ul><li>定义通用接口</li> <li>基础通用服务implements这个接口</li> <li>其他的所有<strong>基础服务类接口</strong>都extends这个接口</li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 通用Service接口
+ * 
+ * @param &lt;Model&gt; 不是Model类，是泛型，指代实体模型(Entity)
+ * @param &lt;Ky&gt; 主键
+ */</span>
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Model</span><span class="token punctuation">,</span> <span class="token class-name">Ky</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">Model</span> <span class="token function">selectByKey</span><span class="token punctuation">(</span><span class="token class-name">Ky</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token class-name">Model</span> entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">delete</span><span class="token punctuation">(</span><span class="token class-name">Ky</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">updateAll</span><span class="token punctuation">(</span><span class="token class-name">Model</span> entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">updateNotNull</span><span class="token punctuation">(</span><span class="token class-name">Model</span> entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h4 id="baseservice-java"><a href="#baseservice-java" class="header-anchor">#</a> BaseService.java</h4> <ul><li>定义通用接口抽象实现</li> <li>其他的所有<strong>基础服务实现类</strong>都extends这个接口，再implements基础服务接口</li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 通用Service
+ * 
+ * @param &lt;Model&gt; 不是Model类，是泛型，指代实体模型(Entity)
+ * @param &lt;Ky&gt; 主键
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">BaseService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Model</span><span class="token punctuation">,</span> <span class="token class-name">Ky</span><span class="token punctuation">&gt;</span></span> <span class="token keyword">implements</span> <span class="token class-name">IService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Model</span><span class="token punctuation">,</span> <span class="token class-name">Ky</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">protected</span> <span class="token class-name">Mapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Model</span><span class="token punctuation">,</span> <span class="token class-name">Ky</span><span class="token punctuation">&gt;</span></span> mapper<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Mapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Model</span><span class="token punctuation">,</span> <span class="token class-name">Ky</span><span class="token punctuation">&gt;</span></span> <span class="token function">getMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mapper<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Model</span> <span class="token function">selectByKey</span><span class="token punctuation">(</span><span class="token class-name">Ky</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mapper<span class="token punctuation">.</span><span class="token function">selectByPrimaryKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token class-name">Model</span> entity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">delete</span><span class="token punctuation">(</span><span class="token class-name">Ky</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mapper<span class="token punctuation">.</span><span class="token function">deleteByPrimaryKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">updateAll</span><span class="token punctuation">(</span><span class="token class-name">Model</span> entity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mapper<span class="token punctuation">.</span><span class="token function">updateByPrimaryKey</span><span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">updateNotNull</span><span class="token punctuation">(</span><span class="token class-name">Model</span> entity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mapper<span class="token punctuation">.</span><span class="token function">updateByPrimaryKeySelective</span><span class="token punctuation">(</span>entity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br></div></div><h4 id="syslogservice-java"><a href="#syslogservice-java" class="header-anchor">#</a> SysLogService.java</h4> <ul><li>基础服务类接口</li> <li>继承<code>IService&lt;Model, Ky&gt;</code></li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SysLogService</span> <span class="token keyword">extends</span> <span class="token class-name">IService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SysLog</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="syslogserviceimpl-java"><a href="#syslogserviceimpl-java" class="header-anchor">#</a> SysLogServiceImpl.java</h4> <ul><li>基础服务实现类</li> <li>继承 <code>BaseService&lt;Model,Ky&gt;</code></li> <li><code>implements</code> 基础服务类接口</li> <li>可以增加其他服务方法，本案例不提供</li></ul> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysLogServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">BaseService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SysLog</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">&gt;</span></span> <span class="token keyword">implements</span> <span class="token class-name">SysLogService</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/9/2022, 2:46:26 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/note/view/后端/Springboot/NoClassDefFoundError和ClassNotFoundException区别.html" class="prev">
+        NoClassDefFoundError和ClassNotFoundException区别
+      </a></span> <span class="next"><a href="/note/view/后端/Springboot/问题记录.html">
+        问题记录
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/note/assets/js/app.0ba106d2.js" defer></script><script src="/note/assets/js/2.218d80b2.js" defer></script><script src="/note/assets/js/22.0a6abdc2.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nginx 配置 | 第八十三</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/note/logo.png">
+    <meta name="description" content="Kendall Cai&#39;s Personal Blog">
+    
+    <link rel="preload" href="/note/assets/css/0.styles.5690957e.css" as="style"><link rel="preload" href="/note/assets/js/app.0ba106d2.js" as="script"><link rel="preload" href="/note/assets/js/2.218d80b2.js" as="script"><link rel="preload" href="/note/assets/js/16.448b8747.js" as="script"><link rel="prefetch" href="/note/assets/js/10.c6c9d4a6.js"><link rel="prefetch" href="/note/assets/js/11.38f1e04c.js"><link rel="prefetch" href="/note/assets/js/12.ccb61adf.js"><link rel="prefetch" href="/note/assets/js/13.9e3449f7.js"><link rel="prefetch" href="/note/assets/js/14.75f0274d.js"><link rel="prefetch" href="/note/assets/js/15.ae274622.js"><link rel="prefetch" href="/note/assets/js/17.add8c01d.js"><link rel="prefetch" href="/note/assets/js/18.35631ebb.js"><link rel="prefetch" href="/note/assets/js/19.eb0b00d8.js"><link rel="prefetch" href="/note/assets/js/20.15ba7766.js"><link rel="prefetch" href="/note/assets/js/21.deb2889b.js"><link rel="prefetch" href="/note/assets/js/22.0a6abdc2.js"><link rel="prefetch" href="/note/assets/js/23.e3ea2e3e.js"><link rel="prefetch" href="/note/assets/js/24.fc7e295f.js"><link rel="prefetch" href="/note/assets/js/25.36cbfaa6.js"><link rel="prefetch" href="/note/assets/js/26.3ae57789.js"><link rel="prefetch" href="/note/assets/js/27.eedbb7c2.js"><link rel="prefetch" href="/note/assets/js/3.1ada5a26.js"><link rel="prefetch" href="/note/assets/js/4.c587eda4.js"><link rel="prefetch" href="/note/assets/js/5.429d47c5.js"><link rel="prefetch" href="/note/assets/js/6.7c9d4c6a.js"><link rel="prefetch" href="/note/assets/js/7.f239ecc2.js"><link rel="prefetch" href="/note/assets/js/8.afc8ecb5.js"><link rel="prefetch" href="/note/assets/js/9.2bfdb7ea.js">
+    <link rel="stylesheet" href="/note/assets/css/0.styles.5690957e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/note/" class="home-link router-link-active"><!----> <span class="site-name">第八十三</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/note/view/指南/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程" class="dropdown-title"><span class="title">编程</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程" class="mobile-dropdown-title"><span class="title">编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/note/view/后端/" class="nav-link">
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/note/view/前端/" class="nav-link">
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/note/view/其他/" class="nav-link">
+  其他
+</a></li></ul></div></div><div class="nav-item"><a href="/note/view/日记/" class="nav-link">
+  日记
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  BaiDu
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Google
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/note/view/指南/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程" class="dropdown-title"><span class="title">编程</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程" class="mobile-dropdown-title"><span class="title">编程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/note/view/后端/" class="nav-link">
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/note/view/前端/" class="nav-link">
+  前端
+</a></li><li class="dropdown-item"><!----> <a href="/note/view/其他/" class="nav-link">
+  其他
+</a></li></ul></div></div><div class="nav-item"><a href="/note/view/日记/" class="nav-link">
+  日记
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  BaiDu
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Google
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Linux</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Nginx</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/note/view/后端/Nginx/Nginx反向代理配置.html" class="sidebar-link">Nginx反向代理配置</a></li><li><a href="/note/view/后端/Nginx/Nginx配置.html" class="active sidebar-link">Nginx配置</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/note/view/后端/Nginx/Nginx配置.html#vue项目配置nginx遇到的坑" class="sidebar-link">Vue项目配置nginx遇到的坑</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/note/view/后端/Nginx/Nginx配置.html#nginx配置代理" class="sidebar-link">Nginx配置代理</a></li></ul></li></ul></li><li><a href="/note/view/后端/Nginx/Nginx配置HTTPS.html" class="sidebar-link">Nginx配置HTTPS</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Springboot</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="nginx-配置"><a href="#nginx-配置" class="header-anchor">#</a> Nginx 配置</h1> <p>将vue项目生成的静态文件夹<code>dist</code>拷贝到服务器，使用Nginx作为web服务器</p> <p>配置文件是 <code>/usr/local/nginx/conf/nginx.conf</code></p> <p>查找Nginx安装路径</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>ps -ef | grep nginx
+# 这里获得的安装路径是 /usr/sbin/nginx
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>获得安装路径后，查找配置文件路径</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>/usr/sbin/nginx -t
+# 获得如下输出
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>配置Nginx</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#关键配置
+server {
+    listen          80;
+    server_name     localhost;
+    
+    charset         utf-8
+    
+    location / {
+        root        /path/to/server/dist/directory;
+        index       index.html  index.htm;
+        # 防止刷新页面时出现404
+        try_files   $uri    $uri/   /index.html;
+    }
+    
+    # 前端请求接口
+    location /api {
+        # 后端服务器的ip和端口号
+        proxy_pass http://ip:port;
+        
+        # 重写Vue项目中配置的/api代理
+        rewrite &quot;^/api/(.*)$&quot; /$1 break;
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p>配置完之后重启Nginx服务器</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>/usr/sbin/nginx -s reload
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="vue项目配置nginx遇到的坑"><a href="#vue项目配置nginx遇到的坑" class="header-anchor">#</a> Vue项目配置nginx遇到的坑</h2> <p>Vue项目中，在vue.config.js中为解决跨域问题配置了向后端请求的代理：</p> <div class="language-JavaScript line-numbers-mode"><pre class="language-javascript"><code># vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>js 文件
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">devServer</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">port</span><span class="token operator">:</span> <span class="token number">5555</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">proxy</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token string-property property">&quot;/api&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token literal-property property">target</span><span class="token operator">:</span> <span class="token string">&quot;http://localhost:9090&quot;</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">pathRewrite</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token string-property property">&quot;^/api&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>这里配置了 <code>/api</code> 代理访问到 <code>http://localhost:9090</code></p> <p>比如，我们真正要访问的接口是 <code>http://localhost:9090/category/list</code>，
+如果没有编写 <code>pathRewrite</code>，那么Vue会访问 <code>http://localhost:9090/api/category/list</code>。</p> <p><strong>在部署到nginx时，也需要进行代理地址重写</strong>。</p> <h3 id="nginx配置代理"><a href="#nginx配置代理" class="header-anchor">#</a> Nginx配置代理</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>    # 前端请求接口
+    location /api {
+        # 后端服务器的ip和端口号
+        proxy_pass http://ip:port;
+        
+        # 重写Vue项目中配置的/api代理
+        rewrite &quot;^/api/(.*)$&quot; /$1 break;
+    }
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><strong>proxy_pass</strong>：反向代理，代理到指定的ip和端口</p> <p><strong>rewrite</strong> 代理地址重写</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>rewrite &quot;匹配路径的正则表达式&quot;  重写后的路径 [指令];
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>rewrite路径重写：</p> <ul><li><code>&quot;/api/(.*)$&quot;</code> 用了分组语法<code>(.*)</code>，把<code>/api</code>以后的部分当作一组。</li> <li><code>/$1</code> 重写的匹配路径，<code>$1</code>引用前面正则表达式匹配到的分组（组编号从1开始也就是<code>/api</code>）,即<code>/api</code>后面的所有。这样的新路径就是除去<code>/api/</code>以外的所有，达到去除<code>/api</code>前缀的目的。</li> <li>break: 指令。常用指令有两个：last、break
+<ul><li>last: 重写路径结束后，将得到的路径重新进行一次路径匹配。</li> <li>break：重写路径结束后，不重新进行路径匹配。</li></ul></li></ul> <p><strong>参考:</strong> <a href="https://blog.csdn.net/weixin_34267123/article/details/91504901?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1.essearch_pc_relevant&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1.essearch_pc_relevant" target="_blank" rel="noopener noreferrer">Nginx实现路径重写rewrite指令<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/9/2022, 2:46:26 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/note/view/后端/Nginx/Nginx反向代理配置.html" class="prev">
+        Nginx反向代理配置
+      </a></span> <span class="next"><a href="/note/view/后端/Nginx/Nginx配置HTTPS.html">
+        Nginx配置HTTPS
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/note/assets/js/app.0ba106d2.js" defer></script><script src="/note/assets/js/2.218d80b2.js" defer></script><script src="/note/assets/js/16.448b8747.js" defer></script>
+  </body>
+</html>
